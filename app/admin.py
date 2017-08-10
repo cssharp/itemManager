@@ -5,9 +5,16 @@ from django.contrib import admin
 from models import Item
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'brand', 'category', 'weight', 'price')
-    search_fields = ('name', 'brand')
+    search_fields = ('name', 'brand', 'iid')
+    list_filter = ('brand',)
     list_per_page = 10
+
+    def image_tag(self, obj):
+        return u'<img src="%s" weight=50 height=50/>' % obj.imgUrls.split('\n')[0]
+    image_tag.short_description = '主图'
+    image_tag.allow_tags = True
+    list_display = ('image_tag', 'iid', 'name', 'brand', 'category', 'weight', 'price')
+
 
 # Register your models here.
 admin.site.register(Item, ItemAdmin)
