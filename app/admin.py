@@ -13,7 +13,14 @@ class ItemAdmin(admin.ModelAdmin):
         return u'<img src="%s" weight=50 height=50/>' % obj.imgUrls.split('\n')[0]
     image_tag.short_description = '主图'
     image_tag.allow_tags = True
-    list_display = ('image_tag', 'iid', 'name', 'brand', 'category', 'weight', 'price')
+
+
+    def source_tag(self, obj):
+        return u'<a href="%s" target="_blank"/>官网链接</a>' % obj.itemUrl
+    source_tag.short_description = '官网链接'
+    source_tag.allow_tags = True
+
+    list_display = ('image_tag', 'source_tag', 'iid', 'name', 'brand', 'category', 'weight', 'price')
 
 
 # Register your models here.
