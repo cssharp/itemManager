@@ -7,6 +7,7 @@ from models import Item
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'brand', 'category', 'weight', 'price')
     search_fields = ('name', 'brand')
+    list_per_page = 10
 
 # Register your models here.
 admin.site.register(Item, ItemAdmin)
