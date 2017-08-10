@@ -9,4 +9,4 @@ class ItemAdmin(admin.ModelAdmin):
     search_fields = ('name', 'brand')
 
 # Register your models here.
-admin.site.register(Item)
+admin.site.register(Item, ItemAdmin)
